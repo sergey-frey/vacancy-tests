@@ -5,9 +5,12 @@ import { persist } from "zustand/middleware";
 export type QuestionsStore = {
 	questions: Question[];
 	currentQuestionIndex: number;
+	targetTime: number;
+	currentTime: number;
 	setAnswer: (questionId: Question["id"], answer: Question["answer"]) => void;
 	nextQuestion: () => void;
 	prevQuestion: () => void;
+	setTime: (time: number) => void;
 };
 
 export const useQuestionsStore = create<QuestionsStore>()(
@@ -15,6 +18,9 @@ export const useQuestionsStore = create<QuestionsStore>()(
 		(set, get) => ({
 			questions: _mockQuestions,
 			currentQuestionIndex: 0,
+			targetTime: 1000 * 60 * 5, // 5 min
+			currentTime: 0,
+
 			setAnswer: (questionId, answer) => {
 				const newQuestions = get().questions.map((question) => {
 					if (question.id === questionId) {
@@ -26,6 +32,7 @@ export const useQuestionsStore = create<QuestionsStore>()(
 
 				set({ questions: newQuestions as Question[] });
 			},
+
 			nextQuestion: () => {
 				set({
 					currentQuestionIndex: Math.min(
@@ -34,12 +41,15 @@ export const useQuestionsStore = create<QuestionsStore>()(
 					),
 				});
 			},
+
 			prevQuestion: () => {
 				set({
 					currentQuestionIndex: Math.max(get().currentQuestionIndex - 1, 0),
 				});
 			},
+			setTime: (time) => set({ currentTime: time }),
 		}),
+
 		{
 			name: "questions",
 		},

@@ -27,3 +27,11 @@ export const testProgressInPercentsSelector = (state: QuestionsStore) => {
 		amountOfQuestions: state.questions.length,
 	};
 };
+
+export const timeSelector = (state: QuestionsStore) => {
+	return {
+		targetTime: state.targetTime,
+		currentTime: state.currentTime,
+		setTime: state.setTime,
+	};
+};
