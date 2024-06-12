@@ -13,6 +13,7 @@ import { TestView } from "./test-view";
 import { useNow } from "@/shared/lib/use-now";
 import { formatTime } from "@/shared/lib/format-time";
 import { Badge } from "@/shared/ui/badge";
+import { TestFinishView } from "./test-finish-view";
 
 export const Test = () => {
 	const currentQuestion = useQuestionsStore(currentQuestionSelector);
@@ -23,13 +24,19 @@ export const Test = () => {
 	const { testProgress, currentQuestionIndex, amountOfQuestions } =
 		useQuestionsStore(testProgressInPercentsSelector);
 
-	const { targetTime, currentTime, setTime } = useQuestionsStore(timeSelector);
+	const { targetTime, currentTime, remainingTime, setTime } =
+		useQuestionsStore(timeSelector);
 
-	const { now, startAt } = useNow({
+	const { reset } = useNow({
 		delay: 1000,
-		enabled: true,
+		enabled: currentTime < targetTime,
 		cb: (now, startAt) => {
-			setTime(currentTime + now - startAt);
+			setTime(
+				Math.min(
+					targetTime,
+					currentTime + Math.floor((now - startAt) / 1000) * 1000,
+				),
+			);
 		},
 	});
 
@@ -38,10 +45,16 @@ export const Test = () => {
 	};
 
 	const isAnswerEmpty = hasEmptyAnswer(currentQuestion);
-	const remainingTime = Math.max(targetTime - now + startAt, 0);
 
 	if (remainingTime === 0) {
-		return <>Finish</>;
+		return (
+			<TestFinishView
+				onResetTimer={() => {
+					reset();
+					setTime(0);
+				}}
+			/>
+		);
 	}
 
 	return (

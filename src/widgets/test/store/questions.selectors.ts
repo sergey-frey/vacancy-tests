@@ -32,6 +32,7 @@ export const timeSelector = (state: QuestionsStore) => {
 	return {
 		targetTime: state.targetTime,
 		currentTime: state.currentTime,
+		remainingTime: Math.max(state.targetTime - state.currentTime, 0),
 		setTime: state.setTime,
 	};
 };
