@@ -5,27 +5,27 @@ export const _mockQuestions: Question[] = [
 	{
 		id: nanoid(),
 		type: "input",
-		text: "Question 1",
+		text: "Почему кот иногда пытается облизать ваше лицо или волосы",
 		answer: "",
 	},
 	{
 		id: nanoid(),
 		type: "textarea",
-		text: "Question 2",
+		text: "Почему кот, лёжа у вас на руках, перебирает лапами, «взбивая» что-то",
 		answer: "",
 	},
 	{
 		id: nanoid(),
 		type: "checkbox",
-		text: "Question 3",
-		options: ["Option 1", "Option 2", "Option 3"],
+		text: "Почему коты обычно идут на руки или ложатся на ноги того, кто их недолюбливает",
+		options: ["Без понятия", "Сильно без понятия", "Ответ Б"],
 		answer: [],
 	},
 	{
 		id: nanoid(),
 		type: "radio",
-		text: "Question 4",
-		options: ["Option 1", "Option 2", "Option 3"],
+		text: "Почему кот пытается удариться головой о человека",
+		options: ["Сумасшедшие", "А почему бы и нет", "Да"],
 		answer: "",
 	},
 ];
