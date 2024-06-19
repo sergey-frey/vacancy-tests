@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles/vars.css">
+  <link rel="stylesheet" href="styles/app.css">
+  <link rel="stylesheet" href="styles/checklist.css">
+
+  <title>Stworka test</title>
+</head>
+<body>
+  <main class="main">
+    <article class="checklist">
+      <span class="circular_progress checklist__progress" style="--progress: 0.6;">
+        <svg class="circular_progress__svg">
+          <circle class="circular_progress__track" />
+          <circle class="circular_progress__progress" />
+        </svg>
+        <span class="circular_progress__value checklist__progress__value">0/7</span>
+      </span>
+
+      <div class="checklist__content">
+        <div class="badge">Чеклист</div>
+        <h3 class="checklist__content__title">
+          Выполнено: 0 из 7 действий
+        <p class="checklist__content__next_event">
+          Следующее действие: Созвониться с клиентом до 
+          <time>23.05.24 12:00</time>
+        </p>
+      </div>
+
+      <button class="button checklist__button">
+        Открыть чеклист
+      </button>
+    </article>
+  </main>
+</body>
+</html>
