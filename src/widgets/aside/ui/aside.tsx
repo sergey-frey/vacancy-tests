@@ -24,6 +24,7 @@ export const Aside = () => {
 					onSelect={setDate}
 					showOutsideDays={false}
 					tasks={tasks ?? []}
+					month={currentDate}
 				/>
 			</div>
 		</aside>
