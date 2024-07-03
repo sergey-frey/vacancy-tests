@@ -1,4 +1,4 @@
-import { cn } from "@nextui-org/theme";
+import { cn } from "@/shared/utils";
 import type { ReactNode } from "react";
 
 type LayoutProps = {

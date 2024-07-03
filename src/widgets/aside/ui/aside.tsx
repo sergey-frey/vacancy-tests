@@ -3,25 +3,27 @@ import {
 	setDateSelector,
 	useCurrentDate,
 } from "@/entities/date";
-import { getLocalTimeZone, today } from "@internationalized/date";
-import { Button } from "@nextui-org/button";
-import { Calendar } from "@nextui-org/calendar";
-import { cn } from "@nextui-org/theme";
+import { useTasksInMonth } from "@/entities/tasks";
+import { Button } from "@/shared/ui/button";
+import { Calendar } from "@/shared/ui/calendar";
+import { cn } from "@/shared/utils";
 
 export const Aside = () => {
-	const defaultDate = today(getLocalTimeZone());
 	const currentDate = useCurrentDate(currentDateSelector);
 	const setDate = useCurrentDate(setDateSelector);
+	const { data: tasks } = useTasksInMonth(currentDate);
 
 	return (
 		<aside className={cn("aside", "p-4", "grid gap-4")}>
-			<Button color="primary">Add task</Button>
+			<Button>Add task</Button>
 
 			<div>
 				<Calendar
-					defaultValue={defaultDate}
-					value={currentDate}
-					onChange={setDate}
+					mode="single"
+					selected={currentDate}
+					onSelect={setDate}
+					showOutsideDays={false}
+					tasks={tasks ?? []}
 				/>
 			</div>
 		</aside>
