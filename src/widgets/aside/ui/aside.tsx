@@ -1,6 +1,8 @@
 import {
 	currentDateSelector,
+	displayMonthSelector,
 	setDateSelector,
+	setDisplayMonthSelector,
 	useCurrentDate,
 } from "@/entities/date";
 import { useTasksInMonth } from "@/entities/tasks";
@@ -11,6 +13,8 @@ import { cn } from "@/shared/utils";
 export const Aside = () => {
 	const currentDate = useCurrentDate(currentDateSelector);
 	const setDate = useCurrentDate(setDateSelector);
+	const displayMonth = useCurrentDate(displayMonthSelector);
+	const setDisplayMonth = useCurrentDate(setDisplayMonthSelector);
 	const { data: tasks } = useTasksInMonth(currentDate);
 
 	return (
@@ -22,9 +26,9 @@ export const Aside = () => {
 					mode="single"
 					selected={currentDate}
 					onSelect={setDate}
-					showOutsideDays={false}
 					tasks={tasks ?? []}
-					month={currentDate}
+					month={displayMonth}
+					onMonthChange={setDisplayMonth}
 				/>
 			</div>
 		</aside>

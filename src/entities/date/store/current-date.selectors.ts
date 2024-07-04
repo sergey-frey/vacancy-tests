@@ -7,3 +7,11 @@ export const currentDateSelector = (store: UseCurrentDate) => {
 export const setDateSelector = (store: UseCurrentDate) => {
 	return store.setDate;
 };
+
+export const displayMonthSelector = (store: UseCurrentDate) => {
+	return store.currentDisplayMonth;
+};
+
+export const setDisplayMonthSelector = (store: UseCurrentDate) => {
+	return store.setDisplayMonth;
+};
