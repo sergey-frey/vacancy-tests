@@ -1,9 +1,10 @@
 import { queryClient } from "@/shared/constants/query-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-	addTaskSelector,
-	editTaskSelector,
-	tasksSelector,
+  addTaskSelector,
+  editTaskSelector,
+  removeTaskSelector,
+  tasksSelector,
 } from "../store/tasks-store.selectors";
 import { useTasksStore } from "../store/use-tasks-store";
 import type { EditTaskDto } from "../types";
@@ -54,6 +55,21 @@ export const useAddTask = () => {
 	return useMutation({
 		mutationFn: async (task: EditTaskDto) => {
 			return addTask(task);
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: [TasksQueryKey],
+			});
+		},
+	});
+};
+
+export const useRemoveTask = () => {
+	const removeTask = useTasksStore(removeTaskSelector);
+
+	return useMutation({
+		mutationFn: async (id: string) => {
+			removeTask(id);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({

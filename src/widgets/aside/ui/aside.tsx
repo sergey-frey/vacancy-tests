@@ -1,9 +1,9 @@
 import {
-	currentDateSelector,
-	displayMonthSelector,
-	setDateSelector,
-	setDisplayMonthSelector,
-	useCurrentDate,
+  currentDateSelector,
+  displayMonthSelector,
+  setDateSelector,
+  setDisplayMonthSelector,
+  useCurrentDate,
 } from "@/entities/date";
 import { useTasksInMonthQuery } from "@/entities/tasks";
 import { AddTaskBtn } from "@/features/task-control";
@@ -19,7 +19,9 @@ export const Aside = () => {
 
 	return (
 		<aside className={cn("aside", "p-4", "grid gap-4")}>
-			<AddTaskBtn editAfterCreate>Add task</AddTaskBtn>
+			<AddTaskBtn date={currentDate} editAfterCreate>
+				Add task
+			</AddTaskBtn>
 
 			<div>
 				<Calendar

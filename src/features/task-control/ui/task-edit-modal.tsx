@@ -98,10 +98,10 @@ export const TaskEditModal = ({ actions, ...props }: TaskEditModalProps) => {
 				</form>
 
 				<DialogFooter>
-					{actions}{" "}
 					<Button type="submit" form={formId}>
 						Save
 					</Button>
+					{actions}
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

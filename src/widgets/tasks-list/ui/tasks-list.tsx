@@ -1,21 +1,22 @@
 import {
-	currentDateSelector,
-	setDateSelector,
-	useCurrentDate,
+  currentDateSelector,
+  setDateSelector,
+  useCurrentDate,
 } from "@/entities/date";
 import { type TaskType, useTasksQuery } from "@/entities/tasks";
 import {
-	setEditingTaskSelector,
-	useEditingTask,
+  AddTaskBtn,
+  setEditingTaskSelector,
+  useEditingTask,
 } from "@/features/task-control";
 import { isEqualDates } from "@/shared/lib/date";
 import { Button } from "@/shared/ui/button";
 import { Separator } from "@/shared/ui/separator";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from "@/shared/ui/tooltip";
 import { cn } from "@/shared/utils";
 import { formatDate } from "date-fns";
@@ -45,7 +46,7 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 
 	return (
 		<>
-			<section {...props} className={cn("px-2", className)}>
+			<section {...props} className={cn("flex flex-col px-2", className)}>
 				<div className="flex items-center">
 					<TooltipProvider>
 						<Tooltip delayDuration={200}>
@@ -64,22 +65,33 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 					</TooltipProvider>
 				</div>
 
-				<Separator className="my-4" />
+				<Separator className="my-3" />
 
-				{isFreeDay && <TasksNotFound>Free day</TasksNotFound>}
+				<AddTaskBtn
+					date={date}
+					editAfterCreate
+					className={cn("w-full")}
+					variant={"outline"}
+					size={"sm"}
+				>
+					+ Add task
+				</AddTaskBtn>
 
-				<ul className="grid gap-2">
-					{tasks?.map((task) => (
-						<button
-							key={task.id}
-							type="button"
-							className="text-start"
-							onClick={handleTaskItemClick(task)}
-						>
-							<TaskItem task={task} />
-						</button>
-					))}
-				</ul>
+				{isFreeDay && <TasksNotFound className="mt-5">Free day</TasksNotFound>}
+				<div className="grow overflow-hidden border">
+					<ul className="flex flex-col gap-2 mt-3 items-start">
+						{tasks?.map((task) => (
+							<button
+								key={task.id}
+								type="button"
+								className="text-start w-full"
+								onClick={handleTaskItemClick(task)}
+							>
+								<TaskItem task={task} />
+							</button>
+						))}
+					</ul>
+				</div>
 			</section>
 		</>
 	);

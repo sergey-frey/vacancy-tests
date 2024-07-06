@@ -1,20 +1,20 @@
-import { currentDateSelector, useCurrentDate } from "@/entities/date";
 import { useAddTask } from "@/entities/tasks";
 import { Button, type ButtonProps } from "@/shared/ui/button";
 import type { MouseEvent } from "react";
-import { useEditingTask } from "../store/use-editing-task";
 import { setEditingTaskSelector } from "../store/editing-task-selectors";
+import { useEditingTask } from "../store/use-editing-task";
 
 type AddTaskBtnProps = ButtonProps & {
+	date: Date;
 	editAfterCreate?: boolean;
 };
 
 export const AddTaskBtn = ({
 	onClick,
+	date,
 	editAfterCreate = false,
 	...props
 }: AddTaskBtnProps) => {
-	const currentDate = useCurrentDate(currentDateSelector);
 	const setEditingTask = useEditingTask(setEditingTaskSelector);
 	const { mutate, data } = useAddTask();
 
@@ -24,7 +24,7 @@ export const AddTaskBtn = ({
 		await mutate({
 			title: "New task",
 			isDone: false,
-			deadline: currentDate,
+			deadline: date,
 		});
 
 		if (editAfterCreate && data) {
