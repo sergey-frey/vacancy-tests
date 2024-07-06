@@ -8,15 +8,18 @@ export const useTasksStore = create<UseTasksStore>((set) => ({
 
 	setTasks: (tasks) => set({ tasks }),
 
-	addTask: (task) =>
-		set((state) => ({ tasks: [...state.tasks, { id: nanoid(), ...task }] })),
+	addTask: (task) => {
+		const newTask = { id: nanoid(), ...task };
+		set((state) => ({ tasks: [...state.tasks, newTask] }));
+		return newTask;
+	},
 
 	removeTask: (id) =>
 		set((state) => ({
 			tasks: state.tasks.filter((task) => task.id !== id),
 		})),
 
-	editTask: (id, dto) =>
+	editTask: (id, dto) => {
 		set((state) => {
 			return {
 				tasks: state.tasks.map((task) => {
@@ -27,5 +30,11 @@ export const useTasksStore = create<UseTasksStore>((set) => ({
 					return task;
 				}),
 			};
-		}),
+		});
+
+		return {
+			id,
+			...dto,
+		};
+	},
 }));

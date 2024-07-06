@@ -6,7 +6,7 @@ import {
 	useCurrentDate,
 } from "@/entities/date";
 import { useTasksInMonthQuery } from "@/entities/tasks";
-import { Button } from "@/shared/ui/button";
+import { AddTaskBtn } from "@/features/task-control";
 import { Calendar } from "@/shared/ui/calendar";
 import { cn } from "@/shared/utils";
 
@@ -19,7 +19,7 @@ export const Aside = () => {
 
 	return (
 		<aside className={cn("aside", "p-4", "grid gap-4")}>
-			<Button>Add task</Button>
+			<AddTaskBtn editAfterCreate>Add task</AddTaskBtn>
 
 			<div>
 				<Calendar

@@ -28,14 +28,19 @@ export const useEditTaskForm = ({
 			},
 			resolver: valibotResolver(EditTaskFormSchema),
 		});
-	const { mutate } = useEditTaskMutation(task?.id ?? "", {
-		title: watch("title"),
-		isDone: watch("isDone"),
-		deadline: task?.deadline ?? new Date(),
-	});
+	const { mutate } = useEditTaskMutation();
 
-	const onSubmit = handleSubmit(async () => {
-		await mutate();
+	const onSubmit = handleSubmit(async (data) => {
+		if (!task) return;
+
+		await mutate({
+			id: task.id,
+			dto: {
+				title: data.title,
+				isDone: data.isDone,
+				deadline: task.deadline,
+			},
+		});
 		onSubmitCb();
 	});
 
