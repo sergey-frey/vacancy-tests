@@ -5,7 +5,7 @@ import {
 	setDisplayMonthSelector,
 	useCurrentDate,
 } from "@/entities/date";
-import { useTasksInMonth } from "@/entities/tasks";
+import { useTasksInMonthQuery } from "@/entities/tasks";
 import { Button } from "@/shared/ui/button";
 import { Calendar } from "@/shared/ui/calendar";
 import { cn } from "@/shared/utils";
@@ -15,7 +15,7 @@ export const Aside = () => {
 	const setDate = useCurrentDate(setDateSelector);
 	const displayMonth = useCurrentDate(displayMonthSelector);
 	const setDisplayMonth = useCurrentDate(setDisplayMonthSelector);
-	const { data: tasks } = useTasksInMonth(currentDate);
+	const { data: tasks } = useTasksInMonthQuery(currentDate);
 
 	return (
 		<aside className={cn("aside", "p-4", "grid gap-4")}>
