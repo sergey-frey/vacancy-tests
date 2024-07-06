@@ -1,22 +1,22 @@
 import {
-  currentDateSelector,
-  setDateSelector,
-  useCurrentDate,
+	currentDateSelector,
+	setDateSelector,
+	useCurrentDate,
 } from "@/entities/date";
 import { type TaskType, useTasksQuery } from "@/entities/tasks";
 import {
-  AddTaskBtn,
-  setEditingTaskSelector,
-  useEditingTask,
+	AddTaskBtn,
+	setEditingTaskSelector,
+	useEditingTask,
 } from "@/features/task-control";
 import { isEqualDates } from "@/shared/lib/date";
 import { Button } from "@/shared/ui/button";
 import { Separator } from "@/shared/ui/separator";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
 } from "@/shared/ui/tooltip";
 import { cn } from "@/shared/utils";
 import { formatDate } from "date-fns";
@@ -78,7 +78,7 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 				</AddTaskBtn>
 
 				{isFreeDay && <TasksNotFound className="mt-5">Free day</TasksNotFound>}
-				<div className="grow overflow-hidden border">
+				<div className="grow overflow-hidden">
 					<ul className="flex flex-col gap-2 mt-3 items-start">
 						{tasks?.map((task) => (
 							<button
