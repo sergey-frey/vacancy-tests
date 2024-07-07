@@ -46,7 +46,10 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 
 	return (
 		<>
-			<section {...props} className={cn("flex flex-col px-2", className)}>
+			<section
+				{...props}
+				className={cn("flex flex-col px-2 overflow-hidden", className)}
+			>
 				<div className="flex items-center">
 					<TooltipProvider>
 						<Tooltip delayDuration={200}>
@@ -78,8 +81,15 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 				</AddTaskBtn>
 
 				{isFreeDay && <TasksNotFound className="mt-5">Free day</TasksNotFound>}
-				<div className="grow overflow-hidden">
-					<ul className="flex flex-col gap-2 mt-3 items-start">
+
+				<div className="grow relative mt-3">
+					<ul
+						className={cn(
+							"flex flex-col grow gap-2 items-start",
+							"absolute top-0 left-0 bottom-0 right-0",
+							"overflow-auto",
+						)}
+					>
 						{tasks?.map((task) => (
 							<button
 								key={task.id}
