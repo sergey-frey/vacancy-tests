@@ -85,10 +85,15 @@
 
   #root {
     display: grid;
-    grid-template-columns: minmax(230px, auto) 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
+      "header header"
       "aside main";
+  }
+
+  .header {
+    grid-area: header;
   }
 
   .main {
@@ -98,5 +103,11 @@
 
   .aside {
     grid-area: aside;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 12px;
+    }
   }
 }

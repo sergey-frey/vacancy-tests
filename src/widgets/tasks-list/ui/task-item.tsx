@@ -9,10 +9,12 @@ export const TaskItem = ({ task: { title, isDone } }: TaskItemProps) => {
 
 	return (
 		<Card>
-			<CardHeader>
-				<CardTitle className="text-lg">{title}</CardTitle>
+			<CardHeader className={cn("p-1.5", "lg:p-4")}>
+				<CardTitle className={cn("text-sm truncate", "lg:text-lg")}>
+					{title}
+				</CardTitle>
 				<CardDescription
-					className={cn("font-medium", isDone && "text-green-500")}
+					className={cn("font-medium truncate", isDone && "text-green-500")}
 				>
 					{cardStatus}
 				</CardDescription>

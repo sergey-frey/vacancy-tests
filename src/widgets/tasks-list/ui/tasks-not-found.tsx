@@ -5,6 +5,9 @@ type TasksNotFoundProps = HTMLAttributes<HTMLParagraphElement>;
 
 export const TasksNotFound = ({ className, ...props }: TasksNotFoundProps) => {
 	return (
-		<p {...props} className={cn("text-lg text-center opacity-70", className)} />
+		<p
+			{...props}
+			className={cn("text-center opacity-70 text-sm", "lg:text-lg", className)}
+		/>
 	);
 };

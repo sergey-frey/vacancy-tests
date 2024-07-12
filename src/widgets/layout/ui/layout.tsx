@@ -2,14 +2,16 @@ import { cn } from "@/shared/utils";
 import type { ReactNode } from "react";
 
 type LayoutProps = {
-	main: ReactNode;
 	aside: ReactNode;
+	header: ReactNode;
+	main: ReactNode;
 };
 
-export const Layout = ({ main, aside }: LayoutProps) => {
+export const Layout = ({ main, aside, header }: LayoutProps) => {
 	return (
 		<>
-			<aside className={cn("aside")}>{aside}</aside>
+			{header}
+			{aside}
 			<main className={cn("main")}>{main}</main>
 		</>
 	);

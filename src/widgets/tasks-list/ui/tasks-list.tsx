@@ -73,7 +73,7 @@ export const TasksList = ({ date, className, ...props }: TasksListProps) => {
 				<AddTaskBtn
 					date={date}
 					editAfterCreate
-					className={cn("w-full")}
+					className={cn("w-full hidden", "xl:block")}
 					variant={"outline"}
 					size={"sm"}
 				>
