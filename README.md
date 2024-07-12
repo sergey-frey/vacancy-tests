@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+## Выполненное тестовое задание в компанию AiRNET
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Задача:
+Создать To-Do лист в виде календаря, где каждый день представлен как список задач.
+При клике на день открывается модальное окно со списком задач. В этом окне можно
+создавать новые задачи, удалять их и помечать как выполненные.
 
-Currently, two official plugins are available:
+### Условия:
+- **Frontend:** Реализация с использованием React и его встроенного функционала.
+Использование дополнительных библиотек допустимо, но нежелательно,
+исключение state-manager.
+- **Хранение данных:** На ваше усмотрение (например, локальное хранилище,
+context API и т.д.).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Критерии:
+- Приятный внешний вид
+- Адаптивный дизайн
+- Маркировка праздничных дней с использованием *isDayOff() API*
+- Возможность вывода задач на неделю
+- Использование TypeScript
+- Покрытие интерфейса тестами
+- Система профилей
+- Реализовать *Dependency Inversion* для внешних HTTP-запросов
+- Понятная структура проекта
+- Разворачивание проекта в Docker
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Решение:
+- Для стилизации использована UI библиотека **shadcn/ui**. Я бы много времени потратил на вёрстку необходимых компонентов. Поэтому было времени взять готовый UIKit. В процессе его всё равно пришлось кастомизировать
+- Дизайн был вдохновлён одним их самых популярных сервисов с подобным функционалом в мире - *Google Calendar*. Адаптивность в дизайне соответствует этому сервису
+- (нет праздничных дней)
+- В интерфейсе заложен вывод задач на ближайшие 7 дней (3 дня до текущего и 3 дня после, помимо выбранной даты)
+- Весь проект Type Safety с использованием TypeScript
+- (нет тестов)
+- (нет системы профилей)
+- Инструмент **Tanstack Query** по умолчанию реализует Dependency Inversion сетевых запросов, выставляя наружу интерфейс для API сервиса с запросами. Для имитации состояния на сервере создан отдельный state, который изменяется вместо запросов на сервер, но в проекте вызываются хуки Tanstack Query. Таким образом, ui компоненты не зависят на API сервис
+- В проекте использована структура **FSD**, признанная лучшей практикой во многих крупных компаниях по типу Яндекса
+- Нет возможности развернуть проект в Docker из-за недостаточной мощности компьютера на момент июля 2024 года. Я умею это делать, можем поподробнее про это поговорить на собеседовании :)
 
-- Configure the top-level `parserOptions` property like this:
+### Дополнительно:
+- Реализована клиентская валидация данных при редактировании задач
+- В календаре отмечены дни, на которые есть задачи. Кол-во задач отображается интенсивностью маркера возле даты (чем больше задач, тем он ярче)
+- Благодаря удобному подходу к работе с данными, можно легко управлять задачами из любого места приложения
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
