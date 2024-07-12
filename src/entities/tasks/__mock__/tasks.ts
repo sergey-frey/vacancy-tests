@@ -5,19 +5,19 @@ export const TASKS: TaskType[] = [
 	{
 		id: nanoid(),
 		title: "Task 1",
-		deadline: new Date("2024-07-06"),
+		deadline: new Date("2024-07-12"),
 		isDone: false,
 	},
 	{
 		id: nanoid(),
 		title: "Task 2",
-		deadline: new Date("2024-07-07"),
+		deadline: new Date("2024-07-13"),
 		isDone: true,
 	},
 	{
 		id: nanoid(),
 		title: "Task 3",
-		deadline: new Date("2024-07-07"),
+		deadline: new Date("2024-07-13"),
 		isDone: false,
 	},
 ];

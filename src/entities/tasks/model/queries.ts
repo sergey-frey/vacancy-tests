@@ -1,10 +1,10 @@
 import { queryClient } from "@/shared/constants/query-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  addTaskSelector,
-  editTaskSelector,
-  removeTaskSelector,
-  tasksSelector,
+	addTaskSelector,
+	editTaskSelector,
+	removeTaskSelector,
+	tasksSelector,
 } from "../store/tasks-store.selectors";
 import { useTasksStore } from "../store/use-tasks-store";
 import type { EditTaskDto } from "../types";

@@ -16,18 +16,20 @@ export const AddTaskBtn = ({
 	...props
 }: AddTaskBtnProps) => {
 	const setEditingTask = useEditingTask(setEditingTaskSelector);
-	const { mutate, data } = useAddTask();
+	const { mutateAsync } = useAddTask();
 
 	const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
 		onClick?.(e);
 
-		await mutate({
+		const data = await mutateAsync({
 			title: "New task",
 			isDone: false,
 			deadline: date,
 		});
 
 		if (editAfterCreate && data) {
+			console.log(data);
+
 			setEditingTask(data);
 		}
 	};
