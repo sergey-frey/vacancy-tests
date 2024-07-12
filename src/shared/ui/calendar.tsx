@@ -70,9 +70,15 @@ function Calendar({
 				IconRight: () => <ChevronRight className="h-4 w-4" />,
 				Day: ({ date, displayMonth }) => {
 					const isDisabled = date.getMonth() !== displayMonth.getMonth();
-					const hasTasks = tasks.some((task) =>
-						isEqualDates(task.deadline, date),
-					);
+
+					const amountOfTasks = tasks.filter((task) => {
+						return isEqualDates(task.deadline, date);
+					}).length;
+
+					const tasksMarkerLimit = 4;
+					const markerOpacity = Math.min(amountOfTasks / tasksMarkerLimit, 1);
+
+					const hasTasks = amountOfTasks > 0;
 					const isActive = isEqualDates(selected, date);
 
 					const getVariant = () => {
@@ -94,9 +100,11 @@ function Calendar({
 							{date.getDate()}
 							<span
 								className={cn(
-									"absolute w-2 h-2 rounded-full bg-sky-500 top-0.5 right-0.5 opacity-0",
-									hasTasks && "opacity-100",
+									"absolute w-2 h-2 rounded-full bg-sky-500 top-0.5 right-0.5",
 								)}
+								style={{
+									opacity: markerOpacity,
+								}}
 							/>
 						</Button>
 					);
