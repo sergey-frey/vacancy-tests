@@ -21,7 +21,8 @@ export const useTicketsFilter = ({
     return currency === buttonCurrency ? "default" : "outline";
   };
 
-  const isAllStepsChecked = stops.length === PossibleStops.length;
+  const isAllStepsChecked =
+    stops.length === PossibleStops.length || stops.length === 0;
 
   const handleCurrencyChange = (currency: Currency) => {
     return () => onCurrencyChange(currency);

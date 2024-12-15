@@ -6,10 +6,11 @@ import {
 } from "@/entites/ticket";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent } from "@/shared/ui/card";
+import { HTMLAttributes } from "react";
+import { getStopItemText } from "../model/stop-item-text";
 import { useTicketsFilter } from "../model/use-tickets-filter";
 import { StopsListItem } from "./stops-list-item";
-import { HTMLAttributes } from "react";
-import { amountStopsHelper } from "@/shared/lib/amount-stops-helper";
+import { twJoin } from "tailwind-merge";
 
 type TicketsFilterProps = HTMLAttributes<HTMLElement> & {
   currency: Currency;
@@ -45,10 +46,20 @@ export const TicketsFilter = ({
       <CardContent className="pt-6 px-0">
         <div className="px-6">
           <h3 className="text-sm uppercase">Валюта</h3>
-          <div className="mt-2">
+          <div
+            className="mt-2 grid"
+            style={{
+              gridTemplateColumns: `repeat(${PossibleCurrencies.length}, 1fr)`,
+            }}
+          >
             {PossibleCurrencies.map((iterationCurrency, i) => (
               <Button
                 key={i}
+                className={twJoin(
+                  "rounded-none",
+                  "first:rounded-s-lg first:border-e-0",
+                  "last:rounded-e-lg last:border-s-0",
+                )}
                 variant={getCurrencyButtonVariant(iterationCurrency)}
                 onClick={handleCurrencyChange(iterationCurrency)}
               >
@@ -77,7 +88,7 @@ export const TicketsFilter = ({
                   <StopsListItem
                     className="group px-6 py-0.5"
                     isChecked={isStopChecked(stop)}
-                    text={amountStopsHelper(stop)}
+                    text={getStopItemText(stop)}
                     onCheck={handleStopsChange(stop)}
                     moreActions={
                       <Button

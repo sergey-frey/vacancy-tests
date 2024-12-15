@@ -19,7 +19,7 @@ export const StopsListItem = ({
 }: StopsListItemProps) => {
   return (
     <div {...props} className={twJoin("flex items-center", className)}>
-      <label className="inline-flex items-center grow">
+      <label className="inline-flex items-center grow cursor-pointer">
         <Checkbox checked={isChecked} onCheckedChange={onCheck} />
         <p className="pl-2">{text}</p>
       </label>

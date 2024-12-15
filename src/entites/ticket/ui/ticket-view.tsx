@@ -1,9 +1,10 @@
 import { amountStopsHelper } from "@/shared/lib/amount-stops-helper";
-import { dateFormatter } from "@/shared/lib/date-formatter";
+import { formatDate } from "@/shared/lib/date-formatter";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent } from "@/shared/ui/card";
 import { Separator } from "@/shared/ui/separator";
 import { ITicket } from "../model/types";
+import { PlaneIcon } from "lucide-react";
 
 type TicketViewProps = {
   ticket: ITicket;
@@ -29,7 +30,10 @@ export const TicketView = ({ ticket }: TicketViewProps) => {
       <CardContent className="pt-6">
         <div className="flex">
           <div className="flex flex-col">
-            <h2 className="text-xl font-medium">{carrier}</h2>
+            <h2 className="text-xl font-medium">
+              <PlaneIcon className="inline mr-2" />
+              {carrier}
+            </h2>
 
             <Button className="mt-auto">Купить за {price}₽</Button>
           </div>
@@ -42,7 +46,7 @@ export const TicketView = ({ ticket }: TicketViewProps) => {
               <div>
                 {origin}, {origin_name}
               </div>
-              <div>{dateFormatter.format(new Date(arrival_date))}</div>
+              <div>{formatDate(arrival_date)}</div>
             </section>
 
             <span className="place-self-center text-slate-600">
@@ -54,7 +58,7 @@ export const TicketView = ({ ticket }: TicketViewProps) => {
               <div>
                 {destination}, {destination_name}
               </div>
-              <div>{dateFormatter.format(new Date(departure_date))}</div>
+              <div>{formatDate(departure_date)}</div>
             </section>
           </div>
         </div>

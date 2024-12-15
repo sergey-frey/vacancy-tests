@@ -6,4 +6,4 @@ export const PossibleCurrencies: Currency[] = [
   Currency.EUR,
 ];
 
-export const PossibleStops: number[] = [1, 2, 3];
+export const PossibleStops: number[] = [0, 1, 2, 3];

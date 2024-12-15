@@ -7,12 +7,13 @@ type UseTicketsQueryStateOptions = {
   possibleStops: Array<ITicket["stops"]>;
 };
 
-export const useTicketsQueryState = ({
+export const useTicketsFilterQueryState = ({
   possibleCurrencies,
+  possibleStops,
 }: UseTicketsQueryStateOptions) => {
   const [ticketsFilterState, setTicketsFilterState] = useQueryStates({
     currency: currencyQueryStateParser.withDefault(Currency.RUB),
-    stops: parseAsArrayOf(parseAsInteger).withDefault([]),
+    stops: parseAsArrayOf(parseAsInteger).withDefault(possibleStops),
   });
 
   const handleCurrencyChange = (currency: Currency) => {
