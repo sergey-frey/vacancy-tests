@@ -8,8 +8,10 @@ import { Button } from "@/shared/ui/button";
 import { Card, CardContent } from "@/shared/ui/card";
 import { useTicketsFilter } from "../model/use-tickets-filter";
 import { StopsListItem } from "./stops-list-item";
+import { HTMLAttributes } from "react";
+import { amountStopsHelper } from "@/shared/lib/amount-stops-helper";
 
-type TicketsFilterProps = {
+type TicketsFilterProps = HTMLAttributes<HTMLElement> & {
   currency: Currency;
   stops: Array<ITicket["stops"]>;
 
@@ -22,6 +24,7 @@ export const TicketsFilter = ({
   stops,
   onCurrencyChange,
   onStopsChange,
+  ...props
 }: TicketsFilterProps) => {
   const {
     isAllStepsChecked,
@@ -38,7 +41,7 @@ export const TicketsFilter = ({
   });
 
   return (
-    <Card>
+    <Card {...props}>
       <CardContent className="pt-6 px-0">
         <div className="px-6">
           <h3 className="text-sm uppercase">Валюта</h3>
@@ -74,13 +77,13 @@ export const TicketsFilter = ({
                   <StopsListItem
                     className="group px-6 py-0.5"
                     isChecked={isStopChecked(stop)}
-                    text={stop.toString()}
+                    text={amountStopsHelper(stop)}
                     onCheck={handleStopsChange(stop)}
                     moreActions={
                       <Button
                         size={"sm"}
                         variant={"ghost"}
-                        className="h-auto py-1 hidden group-hover:block"
+                        className="h-auto py-1 opacity-0 group-hover:opacity-100 ml-4"
                         onClick={() => onStopsChange([stop])}
                       >
                         Только
