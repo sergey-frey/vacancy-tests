@@ -6,11 +6,12 @@
 
 	--color-fg-03: #292d32;
 	--color-fg-02: #212121;
-	--color-bg-01: #a5a5a5;
+	--color-fg-01: #a5a5a5;
 
 	--text-l: 16px;
 	--text-m: 13px;
 	--text-s: 10px;
+	--text-btn-m: 12.606px;
 
 	--border-radius-m: 10px;
 	--border-radius-l: 20px;
@@ -28,4 +29,13 @@ body {
 	font-family: "Manrope", sans-serif;
 	background-color: var(--color-bg-02);
 	color: var(--color-fg-02);
+}
+
+button:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+button:not(:focus) {
+	outline: none;
 }

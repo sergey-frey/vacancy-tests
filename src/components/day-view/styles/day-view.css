@@ -1,0 +1,32 @@
+.day-view {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	font-size: var(--text-m);
+	font-weight: 800;
+	letter-spacing: -0.52px;
+}
+
+.day-view__day {
+	padding-inline: 10px;
+	padding-block: 2px;
+	border-radius: var(--border-radius-full);
+}
+
+.day-view__day.current-day {
+	background-color: var(--color-primary);
+	color: var(--color-bg-03);
+}
+
+.day-view__events-indicator {
+	width: calc(4px + (var(--amount-of-events) * 4px));
+	height: 6px;
+
+	border-radius: var(--border-radius-full);
+
+	background-color: var(--color-primary);
+
+	margin-top: -1px;
+}

@@ -1,0 +1,89 @@
+.calendar__days {
+	background-color: var(--color-bg-03);
+	border-radius: var(--border-radius-l);
+
+	padding-inline: 10px;
+	padding-block: 10px 7px;
+}
+
+.calendar__days__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.calendar__days__header__title {
+	font-weight: 600;
+	font-size: var(--text-l);
+	padding-left: 15px;
+}
+
+.calendar__days__header__month {
+	font-weight: 800;
+}
+
+.calendar__days__header__controls {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+}
+
+.calendar__days__header__actions {
+	border-radius: var(--border-radius-full);
+	background-color: var(--color-bg-02);
+
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px;
+}
+
+.calendar__days__content {
+	padding-top: 17px;
+
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar__days__weekday {
+	font-size: var(--text-m);
+	font-weight: 500;
+	letter-spacing: -0.52px;
+
+	justify-self: center;
+	text-transform: lowercase;
+	font-variant: small-caps;
+}
+
+.calendar__days__day {
+	margin-top: 30px;
+}
+
+.calendar__days__day-button:hover,
+.calendar__days__day-button:active,
+.calendar__days__day-button:focus {
+	color: var(--color-primary);
+	outline: none;
+}
+
+.calendar__days__day.is-first-row {
+	margin-top: 15px;
+}
+
+.calendar__days__day.from-different-month {
+	opacity: 0.5;
+}
+
+.calendar__days__collapse {
+	display: flex;
+	justify-content: center;
+	margin-top: 14px;
+}
+
+.calendar__days__collapse__button {
+	transform: rotate(180deg);
+}
+
+.calendar__days__collapse__button.to-close {
+	transform: rotate(0deg);
+}

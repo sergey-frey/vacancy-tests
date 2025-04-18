@@ -1,0 +1,32 @@
+.button {
+	background-color: var(--color-bg-03);
+	color: var(--color-fg-02);
+	font-weight: 600;
+
+	border-radius: var(--border-radius-full);
+	border: none;
+	outline: none;
+
+	display: inline-flex;
+}
+
+.button_m {
+	padding-block: 5px;
+	padding-inline: 10px;
+
+	font-size: var(--text-btn-m);
+	letter-spacing: -0.378px;
+}
+
+.button_icon-only {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	padding: 0;
+}
+
+.button_icon-only.button_m {
+	width: 24px;
+	height: 24px;
+}
