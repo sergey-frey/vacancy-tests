@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/shared/constants";
 import { useFetch } from "@/shared/lib/use-fetch";
 import { ReminderResponseType } from "@/shared/types";
 
@@ -11,7 +12,7 @@ export const useFetchReminders = ({
 	token,
 }: UseFetchRemindersOptions) => {
 	return useFetch<ReminderResponseType>({
-		url: `${import.meta.env.VITE_API_URL}/reminders`,
+		url: `${API_BASE_URL}/reminders`,
 		method: "POST",
 		headers: {
 			Authorization: `Bearer ${token ?? import.meta.env.VITE_API_TOKEN}`,
