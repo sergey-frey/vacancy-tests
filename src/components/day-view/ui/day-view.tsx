@@ -25,7 +25,10 @@ export const DayView = ({
 			</span>
 
 			<span
-				className="day-view__events-indicator"
+				className={cn(
+					"day-view__events-indicator",
+					isCurrentDate && "current-day"
+				)}
 				style={{ ["--amount-of-events"]: amountOfEventsForDisplay }}
 			/>
 		</time>

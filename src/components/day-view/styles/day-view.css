@@ -28,5 +28,9 @@
 
 	background-color: var(--color-primary);
 
-	margin-top: -1px;
+	margin-top: 1px;
+}
+
+.day-view__events-indicator.current-day {
+	visibility: hidden;
 }

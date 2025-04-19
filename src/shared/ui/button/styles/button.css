@@ -1,6 +1,6 @@
 .button {
 	background-color: var(--color-bg-03);
-	color: var(--color-fg-02);
+	color: var(--color-fg-03);
 	font-weight: 600;
 
 	border-radius: var(--border-radius-full);

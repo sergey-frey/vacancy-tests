@@ -31,3 +31,31 @@ export const addNMonth = (date: Date, n: number) => {
 
 	return result;
 };
+
+export const stripTime = (date: Date) => {
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+};
+
+export const apiDateToISO = (date: string) => date.replace(" ", "T");
+
+export const getTime = (date: Date) => {
+	return date.toLocaleTimeString("ru-RU", {
+		hour: "2-digit",
+		minute: "2-digit",
+	});
+};
+
+export const getTimeDiffFormatted = (target: Date) => {
+	const now = new Date();
+	const diffMs = target.getTime() - now.getTime();
+
+	if (diffMs <= 0) return "00:00";
+
+	const totalMinutes = Math.floor(diffMs / (1000 * 60));
+	const hours = Math.floor(totalMinutes / 60)
+		.toString()
+		.padStart(2, "0");
+	const minutes = (totalMinutes % 60).toString().padStart(2, "0");
+
+	return `${hours}:${minutes}`;
+};

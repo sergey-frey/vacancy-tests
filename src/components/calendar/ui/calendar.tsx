@@ -4,45 +4,39 @@ import { RightArrowIcon } from "@/shared/assets/icons/right-arrow-icon";
 import { UpArrowIcon } from "@/shared/assets/icons/up-arrow-icon";
 import avatar from "@/shared/assets/images/avatar.png";
 import { DAYS_PER_WEEK } from "@/shared/constants";
+import { Nullable } from "@/shared/types";
 import { Avatar, Button } from "@/shared/ui";
 import { areDatesEqualByDay, cn } from "@/shared/utils";
-import { useState } from "react";
-import { getDateInfo } from "../lib/get-date-info";
 import { isDaysFromEqualMonth } from "../lib/is-days-from-equal-monts";
+import { useCalendar } from "../lib/use-calendar";
 import "../styles/calendar.css";
 import { CalendarLayout } from "./calendar-layout";
 
-type CalendarProps = {
+type CalendarProps<T = unknown> = {
 	dateForDisplay: Date;
 	onChangeDate: (date: Date) => void;
 	onTodayClick: () => void;
 	onPrevMonthClick: () => void;
 	onNextMonthClick: () => void;
+	remindersMap: Nullable<Map<string, T[]>>;
 };
 
-export const Calendar = ({
+export const Calendar = function <T = unknown>({
 	dateForDisplay,
 	onChangeDate,
 	onTodayClick,
 	onPrevMonthClick,
 	onNextMonthClick,
-}: CalendarProps) => {
-	const [isFullMonthView, setIsFullMonthView] = useState(false);
-	const { monthName, fullYear, days, currentWeak } =
-		getDateInfo(dateForDisplay);
-
-	const daysForDisplay = isFullMonthView ? days : currentWeak;
-	const collapseButtonTitle = isFullMonthView
-		? "Свернуть календарь"
-		: "Развернуть календарь";
-
-	const handleCollapseClick = () => {
-		setIsFullMonthView((prev) => !prev);
-	};
-
-	const handleDayClick = (date: Date) => {
-		onChangeDate(date);
-	};
+	remindersMap,
+}: CalendarProps<T>) {
+	const {
+		monthName,
+		fullYear,
+		daysForDisplay,
+		isFullMonthView,
+		toggleFullMonthView,
+		collapseButtonTitle,
+	} = useCalendar(dateForDisplay);
 
 	return (
 		<CalendarLayout
@@ -76,18 +70,20 @@ export const Calendar = ({
 				const isFirstRow = i < DAYS_PER_WEEK;
 				const isFromCurrentMonth = isDaysFromEqualMonth(day, dateForDisplay);
 				const isCurrentDate = areDatesEqualByDay(day, dateForDisplay);
+				const amountOfEvents =
+					remindersMap?.get(day.toISOString())?.length ?? 0;
 
 				return (
 					<button
 						key={i}
-						onClick={() => handleDayClick(day)}
+						onClick={() => onChangeDate(day)}
 						className="calendar__days__day-button"
 						title={day.toDateString()}
 						aria-label={day.toDateString()}
 					>
 						<DayView
 							date={day}
-							amountOfEvents={3}
+							amountOfEvents={amountOfEvents}
 							isCurrentDate={isCurrentDate}
 							className={cn(
 								"calendar__days__day",
@@ -106,7 +102,7 @@ export const Calendar = ({
 						"calendar__days__collapse__button",
 						isFullMonthView && "to-close"
 					)}
-					onClick={handleCollapseClick}
+					onClick={toggleFullMonthView}
 					title={collapseButtonTitle}
 				>
 					<UpArrowIcon />

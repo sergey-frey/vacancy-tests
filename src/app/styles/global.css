@@ -1,18 +1,22 @@
 :root {
 	--color-primary: #5945fe;
 
+	--color-bg-01: #f4f4f4;
 	--color-bg-02: #f7f7f7;
 	--color-bg-03: #ffffff;
 
-	--color-fg-03: #292d32;
-	--color-fg-02: #212121;
+	--color-fg-04: #292d32;
+	--color-fg-03: #212121;
+	--color-fg-02: #7d7d7d;
 	--color-fg-01: #a5a5a5;
 
 	--text-l: 16px;
 	--text-m: 13px;
-	--text-s: 10px;
+	--text-s: 12px;
+	--text-xs: 10px;
 	--text-btn-m: 12.606px;
 
+	--border-radius-s: 7px;
 	--border-radius-m: 10px;
 	--border-radius-l: 20px;
 	--border-radius-full: 9999px;
@@ -28,7 +32,7 @@ html,
 body {
 	font-family: "Manrope", sans-serif;
 	background-color: var(--color-bg-02);
-	color: var(--color-fg-02);
+	color: var(--color-fg-03);
 }
 
 button:focus-visible {

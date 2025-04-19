@@ -1,0 +1,21 @@
+meta {
+  name: get-reminders
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjc0OTk5MTY5MCwiaWF0IjoxNzQ0NzMzODYwLCJleHAiOjE3NzYyNjk4NjB9.9GzN_XtwN4isMETGvr4i9pKJjATSC6t_tkMEE-W8I-4
+}
+
+body:json {
+  {
+    "t_user_id": 749991690
+  }
+}

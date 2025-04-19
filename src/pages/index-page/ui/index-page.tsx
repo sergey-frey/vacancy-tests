@@ -1,30 +1,43 @@
 import { Calendar } from "@/components/calendar";
-import { addNMonth } from "@/shared/utils";
-import { useState } from "react";
+import { RemindersList } from "@/components/reminders-list";
+import { getCredentialsFromUrl } from "@/shared/lib/get-credentials-from-url";
+import { stripTime } from "@/shared/utils";
+import { mapRemindersToDates } from "../lib/map-reminders-to-dates";
+import { useCalendarDate } from "../lib/use-calendar-date";
+import { useFetchReminders } from "../lib/use-fetch-reminders";
+import "../styles/index-page.css";
 
 export const IndexPage = () => {
-	const [date, setDate] = useState(new Date());
+	const {
+		date,
+		handleNextMonthClick,
+		handlePrevMonthClick,
+		handleTodayClick,
+		handleChangeDate,
+	} = useCalendarDate();
 
-	const handleTodayClick = () => {
-		setDate(new Date());
-	};
+	const { data } = useFetchReminders(getCredentialsFromUrl());
 
-	const handleNextMonthClick = () => {
-		setDate((prev) => addNMonth(prev, 1));
-	};
+	const remindersMap = mapRemindersToDates(data);
 
-	const handlePrevMonthClick = () => {
-		setDate((prev) => addNMonth(prev, -1));
-	};
+	const currentReminders =
+		remindersMap?.get(stripTime(date).toISOString()) ?? [];
 
 	return (
 		<section className="container">
 			<Calendar
 				dateForDisplay={date}
-				onChangeDate={setDate}
+				onChangeDate={handleChangeDate}
 				onTodayClick={handleTodayClick}
 				onPrevMonthClick={handlePrevMonthClick}
 				onNextMonthClick={handleNextMonthClick}
+				remindersMap={remindersMap}
+			/>
+
+			<RemindersList
+				className="main__reminders-list"
+				dateForDisplay={date}
+				reminders={currentReminders}
 			/>
 		</section>
 	);

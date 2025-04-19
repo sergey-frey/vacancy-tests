@@ -3,10 +3,11 @@ import {
 	getAmountOfDaysInMonth,
 	getFirstDayOfMonth,
 	getLastDayOfMonth,
+	stripTime,
 } from "@/shared/utils";
 
 const getPreviousDays = (date: Date, n: number) => {
-	const currentDate = new Date(date);
+	const currentDate = stripTime(new Date(date));
 	const days: Date[] = [];
 
 	for (let i = 0; i < n; i++) {
@@ -18,7 +19,7 @@ const getPreviousDays = (date: Date, n: number) => {
 };
 
 const getNextDays = (date: Date, n: number) => {
-	const currentDate = new Date(date);
+	const currentDate = stripTime(new Date(date));
 	const days: Date[] = [];
 
 	for (let i = 0; i < n; i++) {
