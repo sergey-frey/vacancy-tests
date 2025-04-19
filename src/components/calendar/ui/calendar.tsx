@@ -19,6 +19,7 @@ type CalendarProps<T = unknown> = {
 	onPrevMonthClick: () => void;
 	onNextMonthClick: () => void;
 	remindersMap: Nullable<Map<string, T[]>>;
+	isLoading?: boolean;
 };
 
 export const Calendar = function <T = unknown>({
@@ -28,6 +29,7 @@ export const Calendar = function <T = unknown>({
 	onPrevMonthClick,
 	onNextMonthClick,
 	remindersMap,
+	isLoading,
 }: CalendarProps<T>) {
 	const {
 		monthName,
@@ -40,6 +42,7 @@ export const Calendar = function <T = unknown>({
 
 	return (
 		<CalendarLayout
+			isLoading={isLoading}
 			monthName={monthName}
 			fullYear={fullYear}
 			avatar={<Avatar size="s" src={avatar} />}

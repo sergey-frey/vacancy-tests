@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { WEEKDAYS } from "../lib/constants";
+import { Loader } from "@/shared/ui";
 
 type CalendarLayoutProps = {
 	monthName: ReactNode;
@@ -8,6 +9,7 @@ type CalendarLayoutProps = {
 	headerActions: ReactNode;
 	days: ReactNode;
 	collapseButton: ReactNode;
+	isLoading?: boolean;
 };
 
 export const CalendarLayout = ({
@@ -17,12 +19,20 @@ export const CalendarLayout = ({
 	headerActions,
 	days,
 	collapseButton,
+	isLoading,
 }: CalendarLayoutProps) => {
 	return (
 		<article className="calendar">
 			<div className="calendar__days">
 				<div className="calendar__days__header">
 					<h1 className="calendar__days__header__title">
+						{isLoading && (
+							<Loader
+								size={13}
+								borderWidth={7}
+								className="calendar__days__header__loader"
+							/>
+						)}
 						<span className="calendar__days__header__month">{monthName}</span>{" "}
 						{fullYear}
 					</h1>

@@ -4,16 +4,19 @@ import { HTMLAttributes } from "react";
 import { useReminderNotifications } from "../lib/use-reminders-notifications";
 import "../styles/reminders-list.css";
 import { ReminderItem } from "./reminder-item";
+import { Loader } from "@/shared/ui";
 
 type RemindersListProps = HTMLAttributes<HTMLElement> & {
 	dateForDisplay: Date;
 	reminders: ReminderType[];
+	isLoading?: boolean;
 };
 
 export const RemindersList = ({
 	className,
 	dateForDisplay,
 	reminders,
+	isLoading,
 	...props
 }: RemindersListProps) => {
 	const formattedDate = dateForDisplay.toLocaleDateString("ru-RU", {
@@ -23,11 +26,14 @@ export const RemindersList = ({
 
 	const { notificationMap } = useReminderNotifications(reminders);
 
-	const isRemindersEmpty = reminders.length === 0;
+	const isRemindersEmpty = !isLoading && reminders.length === 0;
 
 	return (
 		<article {...props} className={cn("reminders-list", className)}>
-			<h2 className="reminders-list__title">{formattedDate}</h2>
+			<h2 className="reminders-list__title">
+				{formattedDate}
+				{isLoading && <Loader size={13} borderWidth={7} />}
+			</h2>
 
 			<div className="reminders-list__content">
 				{isRemindersEmpty && (

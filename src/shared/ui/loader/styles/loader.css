@@ -1,0 +1,24 @@
+.loader {
+	display: inline-block;
+
+	border-radius: var(--border-radius-full);
+
+	border-width: var(--loader-border-width, 2px);
+	border-style: solid;
+	border-inline-color: var(--color-primary);
+	border-block-color: transparent;
+
+	animation-name: spin;
+	animation-duration: var(--loader-spin-duration, 1000ms);
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

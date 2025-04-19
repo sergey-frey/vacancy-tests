@@ -16,6 +16,14 @@
 	font-weight: 600;
 	font-size: var(--text-l);
 	padding-left: 15px;
+
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.calendar__days__header__loader {
+	margin-right: 10px;
 }
 
 .calendar__days__header__month {

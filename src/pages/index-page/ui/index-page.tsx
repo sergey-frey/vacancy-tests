@@ -16,9 +16,11 @@ export const IndexPage = () => {
 		handleChangeDate,
 	} = useCalendarDate();
 
-	const { data } = useFetchReminders(getCredentialsFromUrl());
+	const { data: reminders, isLoading: isRemindersLoading } = useFetchReminders(
+		getCredentialsFromUrl()
+	);
 
-	const remindersMap = mapRemindersToDates(data);
+	const remindersMap = mapRemindersToDates(reminders);
 
 	const currentReminders =
 		remindersMap?.get(stripTime(date).toISOString()) ?? [];
@@ -32,12 +34,14 @@ export const IndexPage = () => {
 				onPrevMonthClick={handlePrevMonthClick}
 				onNextMonthClick={handleNextMonthClick}
 				remindersMap={remindersMap}
+				isLoading={isRemindersLoading}
 			/>
 
 			<RemindersList
 				className="main__reminders-list"
 				dateForDisplay={date}
 				reminders={currentReminders}
+				isLoading={isRemindersLoading}
 			/>
 		</section>
 	);

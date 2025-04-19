@@ -8,6 +8,10 @@ export const scheduleReminder = (reminder: ReminderType, cb?: () => void) => {
 
 	const delay = notifyTime - Date.now();
 
+	if (delay <= reminder.reminder_notify_minutes * 60 * 1000) {
+		cb?.();
+	}
+
 	if (delay <= 0 || reminder.user_notified) return;
 
 	setTimeout(() => {

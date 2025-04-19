@@ -8,6 +8,16 @@
 	outline: none;
 
 	display: inline-flex;
+
+	transition-property: background-color, color;
+	transition-duration: 0.2s;
+}
+
+.button:hover,
+.button:active,
+.button:focus-visible {
+	background-color: var(--color-primary);
+	color: var(--color-bg-03);
 }
 
 .button_m {
