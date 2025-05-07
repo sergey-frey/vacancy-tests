@@ -28,15 +28,18 @@ import { WithSorterButton } from "./with-sorter-button";
 import "../styles/index.css";
 import { FirstColumnCell } from "./first-column-cell";
 import { LastColumnCell } from "./last-column-cell";
+import { TOKENS_PLACEHOLDER_DATA } from "@/shared/ui/table/lib/constants";
+import { TokensTableRowSkeleton } from "./tokens-table-row-skeleton";
 
 type TokensTableProps = TableProps;
 
 export const TokensTable = ({ className, ...props }: TokensTableProps) => {
-  const { data } = useQuery({
+  const { data, isPlaceholderData } = useQuery({
     queryKey: ["tokens"],
     queryFn: ({ signal }) => {
       return tokenRepository.getAll({ limit: 50, offset: 0, signal });
     },
+    placeholderData: TOKENS_PLACEHOLDER_DATA,
   });
 
   const { elemRef, scroll } = useScroll<HTMLDivElement>();
@@ -100,102 +103,110 @@ export const TokensTable = ({ className, ...props }: TokensTableProps) => {
       </TableHeader>
 
       <TableBody>
-        {data?.items.map((item) => (
-          <TableRow key={item.id}>
-            <FirstColumnCell isShowShadow={isShowLeftShadow}>
-              <TokenCellContent
-                logoUrl={item.logoUrl}
-                tokenName={item.name}
-                tokenAddress={item.address}
-              />
-            </FirstColumnCell>
+        {data?.items.map((item) => {
+          if (isPlaceholderData) {
+            return <TokensTableRowSkeleton key={item.id} cols={17} />;
+          }
 
-            <TableCell>
-              <TableCellFlexContent className="justify-center items-start">
-                <CreatedCellContent createdTimestamp={item.createdAt} />
-              </TableCellFlexContent>
-            </TableCell>
-
-            <CellWithDivider>{item.smartFollowersCount}</CellWithDivider>
-
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                <PropertyChangeText
-                  value={item.smartFollowersCountChange}
-                  isShowPositiveSymbol
+          return (
+            <TableRow key={item.id}>
+              <FirstColumnCell isShowShadow={isShowLeftShadow}>
+                <TokenCellContent
+                  logoUrl={item.logoUrl}
+                  tokenName={item.name}
+                  tokenAddress={item.address}
                 />
-              </TableCellFlexContent>
-            </TableCell>
+              </FirstColumnCell>
 
-            <CellWithDivider>{item.smartMentionsCount}</CellWithDivider>
+              <TableCell>
+                <TableCellFlexContent className="justify-center items-start">
+                  <CreatedCellContent createdTimestamp={item.createdAt} />
+                </TableCellFlexContent>
+              </TableCell>
 
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                {item.smartMentionsCountChange}
-              </TableCellFlexContent>
-            </TableCell>
+              <CellWithDivider>{item.smartFollowersCount}</CellWithDivider>
 
-            <CellWithDivider>
-              <TxsCellContent
-                txsBuyCount={item.txsBuyCount}
-                txsSellCount={item.txsSellCount}
-              />
-            </CellWithDivider>
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  <PropertyChangeText
+                    value={item.smartFollowersCountChange}
+                    isShowPositiveSymbol
+                  />
+                </TableCellFlexContent>
+              </TableCell>
 
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                <PropertyChangeText value={item.txsCountChange} />
-              </TableCellFlexContent>
-            </TableCell>
+              <CellWithDivider>{item.smartMentionsCount}</CellWithDivider>
 
-            <CellWithDivider>
-              <VolumeCellContent
-                volumeBuy={Number(item.volumeBuy.USD)}
-                volumeSell={Number(item.volumeSell.USD)}
-              />
-            </CellWithDivider>
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  {item.smartMentionsCountChange}
+                </TableCellFlexContent>
+              </TableCell>
 
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                {item.volumeChange.USD}
-              </TableCellFlexContent>
-            </TableCell>
-
-            <TableCell>
-              <TableCellFlexContent>${item.liquidity.USD}</TableCellFlexContent>
-            </TableCell>
-
-            <CellWithDivider>${item.marketCap.USD}</CellWithDivider>
-
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                {item.marketCapChange.USD}
-              </TableCellFlexContent>
-            </TableCell>
-
-            <CellWithDivider>{item.holdersCount}</CellWithDivider>
-
-            <TableCell className="pl-2">
-              <TableCellFlexContent>
-                {item.holdersCountChange}
-              </TableCellFlexContent>
-            </TableCell>
-
-            <TableCell>
-              <TableCellFlexContent className="items-start">
-                <SecurityCellContent
-                  securityIndicators={item.security.map((s) => s.status)}
+              <CellWithDivider>
+                <TxsCellContent
+                  txsBuyCount={item.txsBuyCount}
+                  txsSellCount={item.txsSellCount}
                 />
-              </TableCellFlexContent>
-            </TableCell>
+              </CellWithDivider>
 
-            <LastColumnCell isShowShadow={isShowRightShadow}>
-              <Button startContent={<PowerIcon className="w-4 h-4" />}>
-                Buy
-              </Button>
-            </LastColumnCell>
-          </TableRow>
-        ))}
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  <PropertyChangeText value={item.txsCountChange} />
+                </TableCellFlexContent>
+              </TableCell>
+
+              <CellWithDivider>
+                <VolumeCellContent
+                  volumeBuy={Number(item.volumeBuy.USD)}
+                  volumeSell={Number(item.volumeSell.USD)}
+                />
+              </CellWithDivider>
+
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  {item.volumeChange.USD}
+                </TableCellFlexContent>
+              </TableCell>
+
+              <TableCell>
+                <TableCellFlexContent>
+                  ${item.liquidity.USD}
+                </TableCellFlexContent>
+              </TableCell>
+
+              <CellWithDivider>${item.marketCap.USD}</CellWithDivider>
+
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  {item.marketCapChange.USD}
+                </TableCellFlexContent>
+              </TableCell>
+
+              <CellWithDivider>{item.holdersCount}</CellWithDivider>
+
+              <TableCell className="pl-2">
+                <TableCellFlexContent>
+                  {item.holdersCountChange}
+                </TableCellFlexContent>
+              </TableCell>
+
+              <TableCell>
+                <TableCellFlexContent className="items-start">
+                  <SecurityCellContent
+                    securityIndicators={item.security.map((s) => s.status)}
+                  />
+                </TableCellFlexContent>
+              </TableCell>
+
+              <LastColumnCell isShowShadow={isShowRightShadow}>
+                <Button startContent={<PowerIcon className="w-4 h-4" />}>
+                  Buy
+                </Button>
+              </LastColumnCell>
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

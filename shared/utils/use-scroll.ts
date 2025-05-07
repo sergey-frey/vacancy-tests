@@ -25,6 +25,8 @@ export const useScroll = <Elem extends HTMLElement>() => {
       });
     };
 
+    handleScroll(); // Set initial scroll position
+
     elem.addEventListener("scroll", handleScroll);
 
     return () => {

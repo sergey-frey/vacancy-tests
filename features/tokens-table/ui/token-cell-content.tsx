@@ -21,6 +21,7 @@ export const TokenCellContent = ({
         width={24}
         height={24}
         unoptimized
+        loading="lazy"
       />
 
       <div className="flex flex-col gap-0.5">
