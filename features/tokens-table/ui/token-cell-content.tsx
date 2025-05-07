@@ -34,8 +34,10 @@ export const TokenCellContent = ({
         onError={handleLogoLoadingError}
       />
 
-      <div className="flex flex-col gap-0.5">
-        <h2>{tokenName}</h2>
+      <div className="flex flex-col gap-0.5 overflow-hidden">
+        <h2 className="truncate" title={tokenName}>
+          {tokenName}
+        </h2>
         <div className="pt-0.5">
           <span className="text-foreground-800 text-sm font-regular">
             {tokenAddress.slice(0, 3)}...

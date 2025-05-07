@@ -57,6 +57,7 @@ export const TableRow = ({
     <tr
       {...props}
       className={cn(
+        "group",
         "pt-3.5 pb-4.5",
         "border-t border-background-700",
         className,
@@ -76,6 +77,8 @@ export const TableCell = ({
         "relative",
         "py-3.5 w-fit",
         "w-full min-w-[72px]",
+        "transition-colors",
+        "group-hover:bg-background-700",
         className,
       )}
     ></td>
