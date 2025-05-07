@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SyntheticEvent } from "react";
 
 type TokenCellContentProps = {
   logoUrl: string;
@@ -7,11 +8,19 @@ type TokenCellContentProps = {
   tokenLinks?: unknown;
 };
 
+const placeholderLogoUrl = "https://fakeimg.pl/24x24/836feb/ffffff?text=U";
+
 export const TokenCellContent = ({
   logoUrl,
   tokenName,
   tokenAddress,
 }: TokenCellContentProps) => {
+  const handleLogoLoadingError = (
+    e: SyntheticEvent<HTMLImageElement, Event>,
+  ) => {
+    e.currentTarget.src = placeholderLogoUrl;
+  };
+
   return (
     <div className="flex items-center gap-2.5">
       <Image
@@ -22,6 +31,7 @@ export const TokenCellContent = ({
         height={24}
         unoptimized
         loading="lazy"
+        onError={handleLogoLoadingError}
       />
 
       <div className="flex flex-col gap-0.5">
