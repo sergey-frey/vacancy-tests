@@ -15,15 +15,14 @@ export const LastColumnCell = ({
     <TableCell
       {...props}
       className={cn(
-        "sticky right-0 z-10",
         "px-4",
         "tokens_table__shadow left_shadow",
-        "bg-background-800",
         {
-          visible: isShowShadow,
+          shadow_visible: isShowShadow,
         },
         className,
       )}
+      tdClassName="sticky right-0 z-10 bg-background-800"
     />
   );
 };

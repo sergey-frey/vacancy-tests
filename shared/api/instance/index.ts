@@ -1,11 +1,10 @@
 import axios from "axios";
 import urlJoin from "url-join";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "https://api.printer.getmoni.io/api/v1";
+import { API_CONFIG } from "../config";
 
 export const tokenInstance = axios.create({
-  baseURL: urlJoin(baseUrl, "token"),
+  baseURL: urlJoin(API_CONFIG.BASE_URL, API_CONFIG.ENDPOINTS.TOKEN),
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,18 +1,24 @@
-import { Divider, TableCell, TableCellFlexContent } from "@/shared/ui";
+import { Divider, TableCell } from "@/shared/ui";
+import { cn } from "@/shared/utils";
 import { TableHTMLAttributes } from "react";
 
-type CellWithDividerProps = TableHTMLAttributes<HTMLTableCellElement>;
+type CellWithDividerProps = TableHTMLAttributes<HTMLTableCellElement> & {
+  dividerHeight?: string;
+};
 
 export const CellWithDivider = ({
   children,
+  className,
+  dividerHeight,
   ...props
 }: CellWithDividerProps) => {
   return (
-    <TableCell {...props}>
-      <TableCellFlexContent className="gap-2 justify-end">
-        {children}
-        <Divider />
-      </TableCellFlexContent>
+    <TableCell
+      className={cn("justify-end items-center gap-2", "pr-0", className)}
+      {...props}
+    >
+      {children}
+      <Divider style={{ height: dividerHeight }} />
     </TableCell>
   );
 };

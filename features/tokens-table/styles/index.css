@@ -40,7 +40,17 @@
   display: none;
 }
 
-.tokens_table__shadow.visible::after,
-.tokens_table__shadow.visible::before {
+.tokens_table__shadow.shadow_visible::after,
+.tokens_table__shadow.shadow_visible::before {
   opacity: 1;
+}
+
+.cell_with_divider::after {
+  content: "";
+  position: absolute;
+  top: var(--pt);
+  right: 0;
+  height: calc(100% - var(--pt) - var(--pb));
+  width: 1px;
+  background-color: var(--color-background-700);
 }

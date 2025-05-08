@@ -15,7 +15,7 @@ export const VolumeCellContent = ({
 
   return (
     <>
-      <div className="flex flex-col gap-2 text-end">
+      <div className="flex flex-col gap-2 items-end">
         <span>${volumeBuy + volumeSell}</span>
         <ProportionLine className="w-14 h-1">
           <ProportionLineSegment
