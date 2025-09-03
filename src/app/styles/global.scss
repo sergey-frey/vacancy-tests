@@ -1,0 +1,25 @@
+@import url("./reset.scss");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+:root {
+  --color-bg-page: #f5f5f5;
+  --color-bg-white: #ffffff;
+  --color-text-primary: #172339;
+  --color-text-secondary: #454f61;
+  --color-text-inverse: #ffffff;
+
+  --gap: 0.25rem;
+}
