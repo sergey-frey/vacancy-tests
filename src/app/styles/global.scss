@@ -1,9 +1,37 @@
 @import url("./reset.scss");
+@import url("./utils.scss");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --color-bg-page: #f5f5f5;
+  --color-bg-white: #ffffff;
+  --color-bg-black: #172339;
+  --color-bg-alpha: rgba(17, 17, 18, 0.04);
+  --color-text-primary: #172339;
+  --color-text-secondary: #454f61;
+  --color-text-inverse: #ffffff;
+  --color-line-light: rgba(23, 35, 57, 0.16);
+  --color-line-light-2: rgba(23, 35, 57, 0.08);
+
+  --gap: 0.25rem;
+
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  --text-sm: 0.75rem;
+  --text-md: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.375rem;
+
+  --screen-mobile: 360px;
+  --screen-desktop: 1440px;
+
+  --shadow-md: 0 var(--gap) calc(var(--gap) * 3) 0 rgba(23, 35, 57, 0.06);
 }
 
 body,
@@ -12,14 +40,11 @@ html,
   height: 100%;
   width: 100%;
   min-height: 100vh;
+  font-family: "Montserrat Variable", sans-serif;
 }
 
-:root {
-  --color-bg-page: #f5f5f5;
-  --color-bg-white: #ffffff;
-  --color-text-primary: #172339;
-  --color-text-secondary: #454f61;
-  --color-text-inverse: #ffffff;
-
-  --gap: 0.25rem;
+body {
+  background-color: var(--color-bg-page);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
 }

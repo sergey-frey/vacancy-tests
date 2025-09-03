@@ -1,3 +1,9 @@
+import { ShareholdersStructureSection } from "@/components/shareholders-structure-section";
+
 export const App = () => {
-  return <div>App</div>;
+  return (
+    <main>
+      <ShareholdersStructureSection />
+    </main>
+  );
 };
