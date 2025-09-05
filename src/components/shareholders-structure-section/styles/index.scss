@@ -10,6 +10,13 @@
     padding: calc(var(--gap) * 8);
     box-shadow: var(--shadow-md);
     border-radius: var(--border-radius-lg);
+
+    @media (max-width: 1024px) {
+      & {
+        padding: calc(var(--gap) * 4);
+        border-radius: 0;
+      }
+    }
   }
 
   &__title {
@@ -24,6 +31,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: calc(var(--gap) * 8);
+
+    @media (max-width: 1024px) {
+      & {
+        grid-template-columns: 1fr;
+        margin-top: calc(var(--gap) * 4);
+      }
+    }
+
+    .divider {
+      display: none;
+
+      @media (max-width: 1024px) {
+        display: block;
+      }
+    }
   }
 
   &__table_wrapper {
@@ -90,11 +112,12 @@
         }
       }
     }
+  }
 
-    &__update_date {
-      line-height: 1.125rem;
-      color: var(--color-text-secondary);
-    }
+  &__update_date {
+    line-height: 1.125rem;
+    color: var(--color-text-secondary);
+    padding-left: calc(var(--gap) * 4);
   }
 
   &__chart_wrapper {
@@ -108,6 +131,23 @@
     border-color: var(--color-line-light);
     border-style: solid;
     border-width: 1px;
+
+    @media (max-width: 1024px) {
+      & {
+        padding-inline: calc(var(--gap) * 4);
+        padding-block: calc(var(--gap) * 4);
+
+        flex-direction: column;
+      }
+    }
+
+    .recharts-responsive-container {
+      @media (max-width: 1024px) {
+        & {
+          align-self: center;
+        }
+      }
+    }
 
     .recharts-wrapper {
       outline: none;
@@ -132,6 +172,12 @@
     flex-direction: column;
     gap: calc(var(--gap) * 4);
 
+    @media (max-width: 1024px) {
+      & {
+        gap: calc(var(--gap) * 2);
+      }
+    }
+
     &_item {
       display: flex;
       align-items: center;
@@ -142,6 +188,12 @@
       border-bottom-width: 1px;
 
       padding-bottom: calc(var(--gap) * 3);
+
+      @media (max-width: 1024px) {
+        & {
+          gap: calc(var(--gap) * 2);
+        }
+      }
     }
 
     &_item_color {

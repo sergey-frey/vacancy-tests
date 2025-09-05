@@ -1,6 +1,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import type { ShareholderData, ShareholderTicker } from "@/shared/api/types";
 import { useShareholdersStructureChart } from "../model/use-shareholders-structure-chart";
+import { useMediaQuery } from "react-responsive";
 
 interface ShareholdersChartProps {
   data: ShareholderData[ShareholderTicker];
@@ -15,16 +16,34 @@ export const ShareholdersChart = ({ data }: ShareholdersChartProps) => {
     CustomTooltip,
   } = useShareholdersStructureChart(data);
 
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1440 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const height = () => {
+    if (isMobile) return 240;
+    return 300;
+  };
+
+  const outerRadius = () => {
+    if (isMobile) return 120;
+    if (isTablet) return 110;
+    return 150;
+  };
+
+  const innerRadius = () => {
+    return outerRadius() - 50;
+  };
+
   return (
     <div className="shareholder_structure__chart_wrapper">
-      <ResponsiveContainer width="100%">
+      <ResponsiveContainer width={height()} height={height()}>
         <PieChart>
           <Pie
             data={chartData}
             cx="50%"
             cy="50%"
-            innerRadius={80}
-            outerRadius={150}
+            innerRadius={innerRadius()}
+            outerRadius={outerRadius()}
             dataKey="value"
             stroke="none"
             onMouseEnter={handleMouseEnter}

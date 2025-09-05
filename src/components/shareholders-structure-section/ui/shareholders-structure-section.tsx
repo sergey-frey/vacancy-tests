@@ -22,6 +22,9 @@ export const ShareholdersStructureSection = () => {
 
         <div className="shareholder_structure__content">
           <ShareholdersTable data={data} />
+
+          <div className="divider" />
+
           <ShareholdersChart data={data} />
         </div>
       </div>
