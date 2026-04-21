@@ -21,11 +21,13 @@ export function App() {
 								{hasError && <UsersTableErrorFallback />}
 
 								{!hasError && (
-									<UsersTable
-										users={data?.users}
-										isLoading={isLoading}
-										total={data?.total}
-									/>
+									<div className="table-wrapper">
+										<UsersTable
+											users={data?.users}
+											isLoading={isLoading}
+											total={data?.total}
+										/>
+									</div>
 								)}
 							</>
 						);

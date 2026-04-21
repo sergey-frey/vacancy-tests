@@ -21,6 +21,7 @@ export const COLUMNS: TableProps<IUser>["columns"] = [
 		title: "Phone",
 		dataIndex: "phone",
 		key: "phone",
+		render: (value: string) => <p className="no-wrap">{value || "-"}</p>,
 	},
 	{
 		title: "Age",

@@ -11,3 +11,11 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}

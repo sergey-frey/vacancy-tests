@@ -19,6 +19,10 @@ export const useFetch = <T>({ fetcher }: IOptions<T>) => {
 			setData(response);
 		} catch (errorObject) {
 			if (errorObject instanceof Error) {
+				if (errorObject.name === "AbortError") {
+					return;
+				}
+
 				setError(errorObject);
 			}
 

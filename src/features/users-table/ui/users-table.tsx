@@ -28,7 +28,7 @@ export const UsersTable = ({ users, total, isLoading }: IProps) => {
 
 	return (
 		<ErrorBoundary fallback={<UsersTableErrorFallback />}>
-			<Table
+			<Table<IUser>
 				columns={COLUMNS}
 				dataSource={usersWithKey}
 				loading={isLoading}

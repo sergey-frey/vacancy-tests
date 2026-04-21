@@ -7,12 +7,13 @@ interface IProps {
 }
 
 export const UsersTableDataLayer = ({ children }: IProps) => {
-	const { search, page, limit } = use(UsersTableContext);
+	const { search, page, limit, setPage } = use(UsersTableContext);
 
 	const result = useUsersTable({
 		search,
 		page,
 		limit,
+		setPage,
 	});
 
 	return children(result);

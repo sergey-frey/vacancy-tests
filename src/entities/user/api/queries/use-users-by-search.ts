@@ -10,10 +10,11 @@ export const useUsersBySearch = ({
 	q,
 	skip,
 	limit,
+	signal,
 }: IGetUsersBySearchPayload) => {
 	const fetcher = useCallback(() => {
-		return userService.getBySearch({ q, skip, limit });
-	}, [q, skip, limit]);
+		return userService.getBySearch({ q, skip, limit, signal });
+	}, [q, skip, limit, signal]);
 
 	return useFetch<IGetUsersBySearchResponse>({
 		fetcher,
