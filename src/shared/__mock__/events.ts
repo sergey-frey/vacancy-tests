@@ -16,6 +16,10 @@ type AddTaskEvent = TaskEventBase<
   "add-task",
   {
     id: string;
+    name: string;
+    model: string;
+    credits: number;
+    estimatedTime: number;
   }
 >;
 
@@ -24,6 +28,7 @@ type ProgressTaskEvent = TaskEventBase<
   {
     id: string;
     progress: number;
+    estimatedTime: number;
   }
 >;
 

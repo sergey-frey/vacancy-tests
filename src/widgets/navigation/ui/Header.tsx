@@ -1,5 +1,5 @@
 import { Link } from "@/shared/routing";
-import { Clock, Menu, Moon, Search, Sun } from "lucide-react";
+import { Clock, ListOrdered, Menu, Moon, Search, Sun } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { useTheme } from "@/features/theme-switcher";
 import { useAuth } from "@/features/auth";
@@ -91,6 +91,15 @@ export function Header({ onToggleSidebar, showBurger = true }: HeaderProps) {
         >
           <Clock className="h-3.5 w-3.5" />
           История
+        </Link>
+
+        {/* Queue (desktop) */}
+        <Link
+          to="/queue"
+          className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+        >
+          <ListOrdered className="h-3.5 w-3.5" />
+          Очередь
         </Link>
 
         {/* Promo (desktop only) */}
